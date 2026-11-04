@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PROJECT DETAIL | 김아현 개인 포트폴리오</title>
+  <meta name="description" content="김아현 학생의 프로젝트 상세 보고서 및 분석 결과입니다.">
+
+  <!-- Pretendard Web Font CDN -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.variable.min.css" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Site Header & Navigation -->
+  <header class="site-header"></header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container container-narrow">
+      
+      <!-- Project Detail Container (Loaded dynamically) -->
+      <article id="project-detail-container">
+        <!-- js/project-detail.js에 의해 동적 렌더링 -->
+      </article>
+
+      <!-- Error / Not Found State -->
+      <div id="project-error-state" class="projects-empty-state" style="display: none;">
+        <svg class="empty-state-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+        <h2 class="empty-state-title">프로젝트를 불러올 수 없습니다.</h2>
+        <p class="empty-state-desc">존재하지 않거나 비공개 처리된 프로젝트입니다.</p>
+        <a href="projects.html" class="btn btn-secondary" style="margin-top: 16px;">PROJECTS 목록으로 돌아가기</a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Lightbox Modal for Image Zoom -->
+  <div id="lightbox-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="이미지 확대 보기">
+    <div class="lightbox-content">
+      <button type="button" id="lightbox-close" class="modal-close-btn" aria-label="닫기">✕</button>
+      <img id="lightbox-img" src="" alt="확대된 이미지" class="lightbox-img">
+    </div>
+  </div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer"></footer>
+
+  <!-- Scripts -->
+  <script type="module" src="js/navigation.js"></script>
+  <script type="module" src="js/project-detail.js"></script>
+</body>
+</html>
+

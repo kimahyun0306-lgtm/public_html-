@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ADMIN | 김아현 개인 포트폴리오 관리자</title>
+  <meta name="description" content="김아현 포트폴리오 프로젝트 관리자 전용 페이지입니다.">
+
+  <!-- Pretendard Web Font CDN -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.variable.min.css" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Site Header & Navigation -->
+  <header class="site-header"></header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      
+      <!-- 1. Admin Login Section (관리자 전용 로그인) -->
+      <section id="admin-login-section" class="admin-login-wrapper" aria-labelledby="login-heading">
+        <h1 id="login-heading" class="admin-login-title">관리자 로그인</h1>
+        <p class="admin-login-sub">김아현 본인 전용 포트폴리오 관리 콘솔입니다.</p>
+
+        <form id="admin-login-form">
+          <div class="form-group">
+            <label for="admin-email" class="form-label">관리자 이메일</label>
+            <input type="email" id="admin-email" class="form-input" placeholder="ahyeon@example.com" value="admin@ahyeon.dev">
+            <small class="form-hint">Firebase 계정 이메일 또는 로컬 식별자</small>
+          </div>
+
+          <div class="form-group">
+            <label for="admin-password" class="form-label">비밀번호</label>
+            <input type="password" id="admin-password" class="form-input" placeholder="비밀번호를 입력하세요" required>
+            <small class="form-hint">로컬 테스트 시 기본 암호: <code>ahyeon2026</code></small>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 12px;">로그인</button>
+        </form>
+      </section>
+
+      <!-- 2. Admin Management Panel (로그인 후 표시) -->
+      <section id="admin-panel-section" style="display: none;">
+        
+        <!-- Panel Header -->
+        <div class="admin-panel-header">
+          <div>
+            <span class="page-category">PORTFOLIO MANAGEMENT</span>
+            <h1 class="page-title" style="margin-bottom: 6px;">프로젝트 관리자 패널</h1>
+            <div class="admin-user-info">
+              <span>관리자: <strong>김아현</strong></span>
+              <span id="admin-mode-badge" class="admin-user-badge">로컬 브라우저 모드</span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <button type="button" id="add-sample-btn" class="btn btn-secondary btn-sm" title="테스트용 샘플 데이터 추가">샘플 프로젝트 추가</button>
+            <button type="button" id="admin-logout-btn" class="btn btn-secondary btn-sm" style="color: var(--color-danger);">로그아웃</button>
+          </div>
+        </div>
+
+        <!-- Project Editor Form Card -->
+        <div class="admin-form-card">
+          <h2 id="form-card-title" class="admin-form-title">새 프로젝트 등록</h2>
+
+          <form id="admin-project-form">
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="proj-title" class="form-label">프로젝트 제목 <span class="required">*</span></label>
+                <input type="text" id="proj-title" class="form-input" placeholder="예: 기온 및 전력 소비 패턴 탐색적 분석" required>
+              </div>
+
+              <div class="form-group">
+                <label for="proj-status" class="form-label">공개 여부 <span class="required">*</span></label>
+                <select id="proj-status" class="form-select">
+                  <option value="draft">초안 (Draft) - 일반 방문자 비공개</option>
+                  <option value="published">공개 (Published) - 웹사이트 즉시 노출</option>
+                </select>
+                <small class="form-hint">검토 후 완성되었을 때 '공개'로 전환하세요.</small>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="proj-tags" class="form-label">기술/분야 태그 (쉼표로 구분)</label>
+                <input type="text" id="proj-tags" class="form-input" placeholder="예: Python, EDA, 시계열, 통계">
+              </div>
+
+              <div class="form-group">
+                <label for="proj-cover-url" class="form-label">대표 커버 이미지 URL (선택)</label>
+                <input type="text" id="proj-cover-url" class="form-input" placeholder="https://... 또는 이미지 경로">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="proj-summary" class="form-label">한 줄 요약 <span class="required">*</span></label>
+              <textarea id="proj-summary" class="form-textarea" style="min-height: 70px;" placeholder="프로젝트 카드 목록에 표시될 1~2줄 요약 설명" required></textarea>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="proj-objective" class="form-label">분석 목적</label>
+                <textarea id="proj-objective" class="form-textarea" placeholder="이 분석을 시작한 배경과 구체적인 해결 목적"></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="proj-data-desc" class="form-label">사용 데이터 명세</label>
+                <textarea id="proj-data-desc" class="form-textarea" placeholder="데이터 출처, 수집 기간, 행/열 규모 및 주요 변수 설명"></textarea>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="proj-methods" class="form-label">사용 기술 및 분석 방법론 (쉼표 구분)</label>
+              <input type="text" id="proj-methods" class="form-input" placeholder="예: Pandas, NumPy, Scipy 가설검정, Seaborn 시각화">
+            </div>
+
+            <div class="form-group">
+              <label for="proj-process" class="form-label">진행 과정</label>
+              <textarea id="proj-process" class="form-textarea" placeholder="1. 데이터 수집 및 정제&#10;2. 결측치/이상치 처리&#10;3. 상관관계 분석&#10;4. 모델링 및 검증"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="proj-results" class="form-label">주요 분석 결과</label>
+              <textarea id="proj-results" class="form-textarea" placeholder="도출된 통계적 유의성, 주요 상관계수, 핵심 인사이트"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="proj-reflection" class="form-label">느낀 점, 한계 및 개선 방향</label>
+              <textarea id="proj-reflection" class="form-textarea" placeholder="프로젝트를 통해 체득한 배움과 데이터의 한계점, 향후 발전 과제"></textarea>
+            </div>
+
+            <!-- Attachments Management: Previews & Downloads -->
+            <div style="background-color: var(--color-bg-subtle); padding: 24px; border-radius: var(--radius-sm); border: 1px solid var(--color-border-light); margin-bottom: 24px;">
+              <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 16px;">자료 첨부 관리 (미리보기 및 원본 다운로드)</h3>
+              
+              <!-- 1. Preview Files -->
+              <div style="margin-bottom: 24px;">
+                <label class="form-label">시각화/보고서 미리보기 파일 추가</label>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px;">
+                  <input type="text" id="new-preview-name" class="form-input" style="flex: 2; min-width: 160px;" placeholder="파일/차트 이름">
+                  <select id="new-preview-type" class="form-select" style="flex: 1; min-width: 100px;">
+                    <option value="image">이미지 (Image)</option>
+                    <option value="pdf">PDF 문서 (PDF)</option>
+                  </select>
+                  <input type="text" id="new-preview-url" class="form-input" style="flex: 3; min-width: 200px;" placeholder="이미지 또는 PDF URL">
+                  <button type="button" id="add-preview-file-btn" class="btn btn-secondary btn-sm">추가</button>
+                </div>
+                <div id="preview-files-list"></div>
+              </div>
+
+              <!-- 2. Download Files -->
+              <div>
+                <label class="form-label">원본 다운로드 파일 추가 (코드, 보고서, 원본 데이터)</label>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px;">
+                  <input type="text" id="new-download-name" class="form-input" style="flex: 2; min-width: 160px;" placeholder="다운로드 파일명 (확장자 포함)">
+                  <input type="text" id="new-download-type" class="form-input" style="flex: 1; min-width: 90px;" placeholder="형식 (IPYNB, PDF, CSV)">
+                  <input type="text" id="new-download-size" class="form-input" style="flex: 1; min-width: 80px;" placeholder="용량 (예: 2.4 MB)">
+                  <input type="text" id="new-download-url" class="form-input" style="flex: 3; min-width: 200px;" placeholder="다운로드 링크 / 경로">
+                  <button type="button" id="add-download-file-btn" class="btn btn-secondary btn-sm">추가</button>
+                </div>
+                <div id="download-files-list"></div>
+              </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <button type="submit" class="btn btn-primary">프로젝트 저장하기</button>
+              <button type="button" id="cancel-edit-btn" class="btn btn-secondary" style="display: none;">편집 취소</button>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- Project List Table -->
+        <div>
+          <h2 class="admin-form-title" style="border: none; margin-bottom: 16px;">등록된 프로젝트 목록</h2>
+          <div class="admin-table-wrapper">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th style="width: 45%;">프로젝트 제목</th>
+                  <th style="width: 15%;">상태</th>
+                  <th style="width: 15%;">등록일</th>
+                  <th style="width: 25%;">관리 기능</th>
+                </tr>
+              </thead>
+              <tbody id="admin-projects-tbody">
+                <!-- js/admin.js에 의해 동적 렌더링 -->
+              </tbody>
+            </table>
+          </div>
+          <div id="admin-table-empty" class="projects-empty-state" style="padding: 48px; display: none;">
+            <p class="empty-state-title" style="font-size: 1.1rem;">등록된 프로젝트가 없습니다.</p>
+            <p class="empty-state-desc" style="font-size: 0.88rem;">위 폼을 작성하거나 '샘플 프로젝트 추가' 버튼을 눌러보세요.</p>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer"></footer>
+
+  <!-- Scripts -->
+  <script type="module" src="js/navigation.js"></script>
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>
+

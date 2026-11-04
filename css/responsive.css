@@ -1,0 +1,193 @@
+/* ==========================================================================
+   반응형 미디어 쿼리 (responsive.css)
+   데스크톱, 태블릿, 모바일 완벽 대응
+   ========================================================================== */
+
+/* Tablet & Smaller (<= 992px) */
+@media (max-width: 992px) {
+  :root {
+    --header-height: 64px;
+  }
+
+  .hero-title {
+    font-size: 2.75rem;
+  }
+
+  .overview-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .about-sidebar {
+    position: static;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .detail-title {
+    font-size: 2.1rem;
+  }
+}
+
+/* Mobile Devices (<= 768px) */
+@media (max-width: 768px) {
+  .site-header {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .mobile-nav-toggle {
+    display: inline-flex;
+  }
+
+  /* Mobile Slide Navigation */
+  .nav-links {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    height: calc(100vh - var(--header-height));
+    background-color: var(--color-bg);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 32px 24px;
+    gap: 24px;
+    border-top: 1px solid var(--color-border-light);
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform var(--transition-normal), opacity var(--transition-normal);
+    z-index: 999;
+    overflow-y: auto;
+  }
+
+  .nav-links.nav-open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav-link {
+    font-size: 1.15rem;
+    padding: 8px 0;
+    width: 100%;
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  .nav-link.active::after {
+    display: none;
+  }
+
+  .nav-link.active {
+    color: var(--color-accent-dark);
+  }
+
+  .nav-link-admin {
+    display: inline-block;
+    margin-top: 12px;
+  }
+
+  /* Page Headers */
+  .main-content {
+    padding: 40px 0 64px;
+  }
+
+  .page-header {
+    margin-bottom: 36px;
+    padding-bottom: 24px;
+  }
+
+  .page-title {
+    font-size: 1.8rem;
+  }
+
+  .hero-section {
+    padding: 40px 0 60px;
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .hero-lead {
+    font-size: 1.05rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .hobby-values-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-panel-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .admin-form-card {
+    padding: 24px 18px;
+  }
+
+  .detail-title {
+    font-size: 1.75rem;
+  }
+
+  .detail-cover-img {
+    max-height: 280px;
+  }
+
+  .pdf-viewer-frame {
+    height: 380px;
+  }
+
+  .footer-inner {
+    gap: 16px;
+  }
+}
+
+/* Small Mobile (<= 480px) */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.9rem;
+  }
+
+  .page-title {
+    font-size: 1.6rem;
+  }
+
+  .overview-card {
+    padding: 24px;
+  }
+
+  .project-card-body {
+    padding: 20px;
+  }
+
+  .skill-category {
+    padding: 24px 18px;
+  }
+
+  .hobby-quote-card {
+    padding: 24px 18px;
+  }
+}
+

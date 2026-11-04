@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PROJECTS | 김아현 개인 포트폴리오</title>
+  <meta name="description" content="김아현 학생의 데이터사이언스 분석 및 개발 프로젝트 목록입니다.">
+
+  <!-- Pretendard Web Font CDN -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.variable.min.css" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Site Header & Navigation -->
+  <header class="site-header"></header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      
+      <!-- Page Header -->
+      <div class="page-header">
+        <span class="page-category">02 / WORK ARCHIVE</span>
+        <h1 class="page-title">PROJECTS</h1>
+        <p class="page-subtitle">문제를 정의하고 데이터를 수집·분석하여 도출한 인사이트를 기록합니다.</p>
+      </div>
+
+      <!-- Projects Toolbar (Tags & Search) -->
+      <div class="projects-toolbar">
+        <ul class="tag-filter-list" id="tag-filter-list" aria-label="프로젝트 기술 태그 필터">
+          <!-- js/projects.js에 의해 동적 렌더링 -->
+        </ul>
+
+        <div class="projects-search-box">
+          <svg class="projects-search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="search" id="projects-search-input" class="projects-search-input" placeholder="프로젝트 또는 기술 검색..." aria-label="프로젝트 검색">
+        </div>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="projects-grid" id="projects-grid-container">
+        <!-- js/projects.js에 의해 동적 렌더링 -->
+      </div>
+
+      <!-- Filter Empty Message -->
+      <div id="projects-filter-empty" class="projects-empty-state" style="display: none;">
+        <p class="empty-state-title">일치하는 프로젝트가 없습니다.</p>
+        <p class="empty-state-desc">다른 키워드로 검색하거나 전체 필터를 선택해 보세요.</p>
+      </div>
+
+      <!-- Initial Empty State (기획서 3.3 명세 준수) -->
+      <div id="projects-empty-state" class="projects-empty-state" style="display: none;">
+        <svg class="empty-state-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="12" y1="18" x2="12" y2="12"></line>
+          <line x1="9" y1="15" x2="15" y2="15"></line>
+        </svg>
+        <h2 class="empty-state-title">프로젝트를 정리하고 있습니다.</h2>
+        <p class="empty-state-desc">
+          학업 및 과제 결과물 중 완성도 있는 분석 프로젝트를 엄선하여 본문에 순차적으로 등록할 예정입니다. 
+          잠시만 기다려 주시기 바랍니다.
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer"></footer>
+
+  <!-- Scripts -->
+  <script type="module" src="js/navigation.js"></script>
+  <script type="module" src="js/projects.js"></script>
+</body>
+</html>
+
